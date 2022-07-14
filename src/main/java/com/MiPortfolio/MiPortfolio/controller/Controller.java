@@ -9,6 +9,8 @@ import com.MiPortfolio.MiPortfolio.model.Persona;
 import com.MiPortfolio.MiPortfolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,7 +52,35 @@ public class Controller {
         return "La persona fue borrada correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
+     @PutMapping ("/editar/persona/{id}")
+    public ResponseEntity <Persona> editarPersona (@PathVariable Long id,
+                                    @RequestBody Persona p){
+    Persona nuevaP = persoserv.buscarPersona(id);
+    nuevaP.setNombre(p.getNombre());
+    nuevaP.setApellido(p.getApellido());
+    nuevaP.setImg(p.getImg());
+    nuevaP.setProfesion(p.getProfesion());
+    nuevaP.setUbicacion(p.getUbicacion());
+    
+    persoserv.crearPersona(nuevaP);
+    return ResponseEntity.ok(nuevaP); 
+}
+    
+     @PreAuthorize("hasRole('ADMIN')")
+     @PutMapping ("/editar/acercade/{id}")
+    public ResponseEntity <Persona> editarAcercaDe (@PathVariable Long id,
+                                    @RequestBody Persona p){
+    Persona nuevaP = persoserv.buscarPersona(id);
+    
+    nuevaP.setAcercade(p.getAcercade());
+    
+    persoserv.crearPersona(nuevaP);
+    return ResponseEntity.ok(nuevaP); 
+}
+    
    
+    /*
     @PutMapping ("/editar/persona/{id}")
     public Persona editarPersona (@PathVariable Long id,
                                     @RequestParam("nombre") String nuevoNombre,
@@ -70,6 +100,7 @@ public class Controller {
     persoserv.crearPersona(nuevaP);
     return nuevaP; 
 }
+*/
     
     @GetMapping ("/buscar/persona/{id}")
     @ResponseBody

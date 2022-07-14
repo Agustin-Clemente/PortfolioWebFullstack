@@ -25,15 +25,27 @@ public class ProyectosService implements IProyectosService{
     public List<Proyectos> verProyectos() {
         return proyectorepo.findAll() ;
                 }
+    
+     @Override
+    public Proyectos crearProyectos(Proyectos p) {
+        return proyectorepo.save(p);
+                }
 
+    /*
     @Override
     public void crearProyectos(Proyectos p) {
         proyectorepo.save(p);
     }
-
+*/
+    /*
     @Override
     public void borrarProyectos(Long id) {
         proyectorepo.deleteById(id); 
+    }
+*/
+    @Override
+    public void borrarProyectos(Proyectos p) {
+        proyectorepo.delete(p); 
     }
 
     @Override

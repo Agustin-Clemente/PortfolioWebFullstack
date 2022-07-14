@@ -27,13 +27,14 @@ public class EducacionService implements IEducacionService{
         }
 
     @Override
-    public void crearEducacion(Educacion edu) {
-        edurepo.save(edu);
+    public Educacion crearEducacion(Educacion edu) {
+        return edurepo.save(edu);
                 }
 
     @Override
-    public void borrarEducacion(Long id) {
-        edurepo.deleteById(id);
+    public void borrarEducacion(Educacion edu) {
+       // edurepo.deleteById(id);
+       edurepo.delete(edu);
     }
 
     @Override
