@@ -22,13 +22,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
-    private final static Logger logger= LoggerFactory.getLogger(JwtAuthenticationEntryPoint.class );
-    
+    private final static Logger logger = LoggerFactory.getLogger(JwtAuthenticationEntryPoint.class);
+
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        //response.sendError(HttpServletResponse.SC_UNAUTHORIZED,authException.getMessage()); 
         logger.error("falló el método commence");
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No autorizado");
     }
-    
+
 }

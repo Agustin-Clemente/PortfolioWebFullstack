@@ -26,25 +26,28 @@ import lombok.Setter;
  *
  * @author a_cle
  */
-@Getter @Setter
+@Getter
+@Setter
 @Entity
-@Table(uniqueConstraints= {@UniqueConstraint(columnNames={"username"}),@UniqueConstraint(columnNames={"password"})})
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"username"}),
+    @UniqueConstraint(columnNames = {"password"})})
 public class Usuario {
-    
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotNull
     private String username;
-    
+
     @NotNull
     private String password;
-    
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "usuarios_roles", joinColumns= @JoinColumn(name= "usuario_id", referencedColumnName ="id"),inverseJoinColumns=@JoinColumn(name="rol_id", referencedColumnName="id"))
+    @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
     private Set<Rol> roles = new HashSet<>();
-    
+
     public Usuario() {
     }
 
@@ -52,7 +55,5 @@ public class Usuario {
         this.username = username;
         this.password = password;
     }
-    
-    
-    
+
 }

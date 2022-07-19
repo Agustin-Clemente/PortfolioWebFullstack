@@ -17,23 +17,24 @@ import lombok.Setter;
  *
  * @author a_cle
  */
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class Proyectos {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @NotNull
     private String titulo;
-    
+
     @NotNull
     private Integer anio;
-    
+
     @NotNull
     private String descripcion;
-    
+
     private String img;
 
     public Proyectos() {
@@ -44,8 +45,8 @@ public class Proyectos {
         this.anio = anio;
         this.descripcion = descripcion;
         this.titulo = titulo;
-        this.img=img;
-        
+        this.img = img;
+
     }
-    
+
 }

@@ -17,31 +17,30 @@ import lombok.Setter;
  *
  * @author a_cle
  */
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class Experiencia {
-    
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @NotNull
     private String cargo;
-    
+
     @NotNull
     private String sector;
-    
+
     @NotNull
     private String jornada;
-    
+
     @NotNull
     private String desde;
-    
+
     @NotNull
     private String hasta;
-    
+
     private String img;
 
     public Experiencia() {
@@ -54,8 +53,8 @@ public class Experiencia {
         this.hasta = hasta;
         this.jornada = jornada;
         this.sector = sector;
-        this.img=img;
-        
+        this.img = img;
+
     }
-    
+
 }

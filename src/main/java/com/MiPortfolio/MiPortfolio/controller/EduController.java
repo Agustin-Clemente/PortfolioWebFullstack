@@ -29,81 +29,54 @@ import org.springframework.web.bind.annotation.RestController;
  * @author a_cle
  */
 @RestController
-@CrossOrigin(origins= "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EduController {
-    
+
     @Autowired
     private IEducacionService eduserv;
-    
+
     @PreAuthorize("hasRole('ADMIN')")
-     @PostMapping ("/new/educacion")
-     public Educacion agregarEducacion (@RequestBody Educacion edu){
-             return eduserv.crearEducacion(edu);
-                     }
-     
-     @GetMapping ("/ver/educacion")
-     @ResponseBody
-     public List<Educacion> verEducacion(){
-    return eduserv.verEducacion();
-     }
-     
-     @PreAuthorize("hasRole('ADMIN')")
-     @DeleteMapping ("/deleteedu/{id}")
-     public ResponseEntity<Map<String,Boolean>> borrarEducacion (@PathVariable Long id){
-         Educacion e = eduserv.buscarEducacion(id);
-         
-         eduserv.borrarEducacion(e);
-         Map<String,Boolean> respuesta = new HashMap<>();
+    @PostMapping("/new/educacion")
+    public Educacion agregarEducacion(@RequestBody Educacion edu) {
+        return eduserv.crearEducacion(edu);
+    }
+
+    @GetMapping("/ver/educacion")
+    @ResponseBody
+    public List<Educacion> verEducacion() {
+        return eduserv.verEducacion();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/deleteedu/{id}")
+    public ResponseEntity<Map<String, Boolean>> borrarEducacion(@PathVariable Long id) {
+        Educacion e = eduserv.buscarEducacion(id);
+
+        eduserv.borrarEducacion(e);
+        Map<String, Boolean> respuesta = new HashMap<>();
         respuesta.put("eliminar", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
-     }
-     
-     /*
-     @DeleteMapping ("/deleteedu/{id}")
-     public String borrarEducacion (@PathVariable Long id){
-         eduserv.borrarEducacion(id);
-         return "La educación fue borrada";
-     }
-     */
-      @PutMapping ("editar/edu/{id}")
-      public ResponseEntity<Educacion> editarEducacion(@PathVariable Long id,
-                                            @RequestBody Educacion edu){
+    }
+
+    @PutMapping("editar/edu/{id}")
+    public ResponseEntity<Educacion> editarEducacion(@PathVariable Long id,
+            @RequestBody Educacion edu) {
         Educacion nuevaEdu = eduserv.buscarEducacion(id);
-        
+
         nuevaEdu.setInstitucion(edu.getInstitucion());
         nuevaEdu.setTitulo(edu.getTitulo());
         nuevaEdu.setDesde(edu.getDesde());
         nuevaEdu.setHasta(edu.getHasta());
         nuevaEdu.setImg(edu.getImg());
-        
-        
+
         eduserv.crearEducacion(nuevaEdu);
         return ResponseEntity.ok(nuevaEdu);
-     
-      /*public Educacion editarEducacion (@PathVariable Long id,
-                                        @RequestParam ("institucion") String institucion,
-                                        @RequestParam ("titulo") String titulo,
-                                        @RequestParam ("desde") String desde,
-                                        @RequestParam ("hasta") String hasta,
-                                        @RequestParam ("img") String img){
-          
-          Educacion nuevaEdu = eduserv.buscarEducacion(id);
-          nuevaEdu.setTitulo(titulo);
-          nuevaEdu.setInstitucion(institucion);
-          nuevaEdu.setDesde(desde);
-          nuevaEdu.setHasta(hasta);
-          nuevaEdu.setImg(img);
-          
-          eduserv.crearEducacion(nuevaEdu);
-                  return nuevaEdu;
-*/
-      }
-      
-      @GetMapping ("/buscar/edu/{id}")
-      @ResponseBody
-      public Educacion buscarEducacion (@PathVariable Long id){
-          return eduserv.buscarEducacion(id);
-      }
-     
-    
+    }
+
+    @GetMapping("/buscar/edu/{id}")
+    @ResponseBody
+    public Educacion buscarEducacion(@PathVariable Long id) {
+        return eduserv.buscarEducacion(id);
+    }
+
 }

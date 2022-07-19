@@ -6,7 +6,6 @@
 package com.MiPortfolio.MiPortfolio.model;
 
 import com.MiPortfolio.MiPortfolio.seguridad.RolNombre;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,29 +20,25 @@ import lombok.Setter;
  *
  * @author a_cle
  */
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class Rol {
-    
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     //private String nombre;
     @NotNull
     @Enumerated(EnumType.STRING)
     private RolNombre rol;
-    
+
     public Rol() {
     }
 
     public Rol(RolNombre rol) {
         this.rol = rol;
     }
-    
-    
 
-    
-    
-    
 }

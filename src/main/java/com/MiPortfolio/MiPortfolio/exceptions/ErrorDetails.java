@@ -12,10 +12,10 @@ import java.util.Date;
  * @author a_cle
  */
 public class ErrorDetails {
-    
+
     private Date marcaDeTiempo;
-	private String mensaje;
-	private String detalles;
+    private String mensaje;
+    private String detalles;
 
     public ErrorDetails(Date marcaDeTiempo, String mensaje, String detalles) {
         this.marcaDeTiempo = marcaDeTiempo;
@@ -46,8 +46,5 @@ public class ErrorDetails {
     public void setDetalles(String detalles) {
         this.detalles = detalles;
     }
-        
-        
 
-    
 }

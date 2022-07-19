@@ -10,7 +10,7 @@ package com.MiPortfolio.MiPortfolio.exceptions;
  * @author a_cle
  */
 public class Mensaje {
-    
+
     private String mensaje;
 
     public Mensaje(String mensaje) {
@@ -24,7 +24,5 @@ public class Mensaje {
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
-    
-    
-    
+
 }

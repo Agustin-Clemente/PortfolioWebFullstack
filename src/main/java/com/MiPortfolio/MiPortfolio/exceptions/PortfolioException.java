@@ -11,25 +11,24 @@ import org.springframework.http.HttpStatus;
  *
  * @author a_cle
  */
-public class PortfolioException extends RuntimeException{
-    
+public class PortfolioException extends RuntimeException {
+
     private static final long serialVersionUID = 1L;
 
-    
     private HttpStatus estado;
-	private String mensaje;
-        
-        public PortfolioException(HttpStatus estado, String mensaje) {
-            super();
+    private String mensaje;
+
+    public PortfolioException(HttpStatus estado, String mensaje) {
+        super();
         this.estado = estado;
         this.mensaje = mensaje;
     }
-        
-        public PortfolioException(HttpStatus estado, String mensaje, String mensaje2) {
-            super();
+
+    public PortfolioException(HttpStatus estado, String mensaje, String mensaje2) {
+        super();
         this.estado = estado;
         this.mensaje = mensaje;
-        this.mensaje=mensaje2;
+        this.mensaje = mensaje2;
     }
 
     public HttpStatus getEstado() {
@@ -47,7 +46,5 @@ public class PortfolioException extends RuntimeException{
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
-        
-        
-    
+
 }

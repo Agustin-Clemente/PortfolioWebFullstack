@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  *
  * @author a_cle
  */
-@ResponseStatus(value= HttpStatus.NOT_FOUND)
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class ResourceNotFoundException extends RuntimeException {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     private String nombreDelRecurso;
     private String nombreDelCampo;
     private long id;
@@ -27,8 +27,8 @@ public class ResourceNotFoundException extends RuntimeException {
         this.nombreDelCampo = nombreDelCampo;
         this.id = id;
     }
-    
-    public ResourceNotFoundException(String mensaje){
+
+    public ResourceNotFoundException(String mensaje) {
         super(mensaje);
     }
 
@@ -55,6 +55,5 @@ public class ResourceNotFoundException extends RuntimeException {
     public void setId(long id) {
         this.id = id;
     }
-    
-    
+
 }

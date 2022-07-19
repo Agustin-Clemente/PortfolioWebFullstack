@@ -21,37 +21,37 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  *
  * @author a_cle
  */
-public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
-    
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+
     @ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<ErrorDetails> manejarResourceNotFoundException(ResourceNotFoundException exception,WebRequest webRequest){
-		ErrorDetails detalles = new ErrorDetails(new Date(),exception.getMessage(), webRequest.getDescription(false));
-		return new ResponseEntity<>(detalles,HttpStatus.NOT_FOUND);
-	}
-        
-        @ExceptionHandler(PortfolioException.class)
-	public ResponseEntity<ErrorDetails> manejarException(PortfolioException exception,WebRequest webRequest){
-		ErrorDetails detalles = new ErrorDetails(new Date(),exception.getMessage(), webRequest.getDescription(false));
-		return new ResponseEntity<>(detalles,HttpStatus.BAD_REQUEST);
-	}
-    
-        @ExceptionHandler(Exception.class)
-	public ResponseEntity<ErrorDetails> manejarGlobalException(Exception exception,WebRequest webRequest){
-		ErrorDetails detalles = new ErrorDetails(new Date(),exception.getMessage(), webRequest.getDescription(false));
-		return new ResponseEntity<>(detalles,HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-        
-        @Override
-	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		Map<String, String> errores = new HashMap<>();
-		e.getBindingResult().getAllErrors().forEach((error) -> {
-			String nombreCampo = ((FieldError)error).getField();
-			String mensaje = error.getDefaultMessage();
-			
-			errores.put(nombreCampo, mensaje);
-		});
-		
-		return new ResponseEntity<>(errores,HttpStatus.BAD_REQUEST);
-	}
+    public ResponseEntity<ErrorDetails> manejarResourceNotFoundException(ResourceNotFoundException exception, WebRequest webRequest) {
+        ErrorDetails detalles = new ErrorDetails(new Date(), exception.getMessage(), webRequest.getDescription(false));
+        return new ResponseEntity<>(detalles, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(PortfolioException.class)
+    public ResponseEntity<ErrorDetails> manejarException(PortfolioException exception, WebRequest webRequest) {
+        ErrorDetails detalles = new ErrorDetails(new Date(), exception.getMessage(), webRequest.getDescription(false));
+        return new ResponseEntity<>(detalles, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorDetails> manejarGlobalException(Exception exception, WebRequest webRequest) {
+        ErrorDetails detalles = new ErrorDetails(new Date(), exception.getMessage(), webRequest.getDescription(false));
+        return new ResponseEntity<>(detalles, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e,
+            HttpHeaders headers, HttpStatus status, WebRequest request) {
+        Map<String, String> errores = new HashMap<>();
+        e.getBindingResult().getAllErrors().forEach((error) -> {
+            String nombreCampo = ((FieldError) error).getField();
+            String mensaje = error.getDefaultMessage();
+
+            errores.put(nombreCampo, mensaje);
+        });
+
+        return new ResponseEntity<>(errores, HttpStatus.BAD_REQUEST);
+    }
 }

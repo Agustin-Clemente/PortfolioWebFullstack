@@ -5,8 +5,7 @@
  */
 package com.MiPortfolio.MiPortfolio.repository;
 
-import com.MiPortfolio.MiPortfolio.model.Usuario;
-import java.util.Optional;
+import com.MiPortfolio.MiPortfolio.model.Skill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,10 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author a_cle
  */
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-
-    public Optional<Usuario> findByUsername(String username);
-
-    public Boolean existsByUsername(String username);
+public interface SkillRepository extends JpaRepository<Skill, Long> {
 
 }

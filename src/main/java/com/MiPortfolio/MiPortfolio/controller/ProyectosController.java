@@ -29,93 +29,54 @@ import org.springframework.web.bind.annotation.RestController;
  * @author a_cle
  */
 @RestController
-@CrossOrigin(origins= "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProyectosController {
-    
+
     @Autowired
     private IProyectosService proyectoserv;
-    
-    /*
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/new/proyecto")
-    @ResponseBody
-    public String agregarProyectos (@RequestBody Proyectos p){
-        proyectoserv.crearProyectos(p);
-        return "El proyecto se agregó correctamente";
-    }
-    */
-     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/new/proyecto")
-    public Proyectos agregarProyectos (@RequestBody Proyectos p){
+    public Proyectos agregarProyectos(@RequestBody Proyectos p) {
         return proyectoserv.crearProyectos(p);
     }
-    
-    @GetMapping ("/ver/proyecto")
+
+    @GetMapping("/ver/proyecto")
     @ResponseBody
-    public List<Proyectos> verProyectos(){
+    public List<Proyectos> verProyectos() {
         return proyectoserv.verProyectos();
     }
-    
-    /*
-    @DeleteMapping ("/deleteproy/{id}")
-    public String borrarProyecto(@PathVariable Long id){
-        proyectoserv.borrarProyectos(id);
-        return "El proyecto fue borrado";
-    }
-            */
-    
-   @PreAuthorize("hasRole('ADMIN')")
-     @DeleteMapping ("/deleteproy/{id}")
-     public ResponseEntity<Map<String,Boolean>> borrarProyecto (@PathVariable Long id){
-         Proyectos p = proyectoserv.buscarProyectos(id);
-         
-         proyectoserv.borrarProyectos(p);
-         Map<String,Boolean> respuesta = new HashMap<>();
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/deleteproy/{id}")
+    public ResponseEntity<Map<String, Boolean>> borrarProyecto(@PathVariable Long id) {
+        Proyectos p = proyectoserv.buscarProyectos(id);
+
+        proyectoserv.borrarProyectos(p);
+        Map<String, Boolean> respuesta = new HashMap<>();
         respuesta.put("eliminar", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
-     }
-     
-     @PreAuthorize("hasRole('ADMIN')")
-     @PutMapping ("/editar/proyecto/{id}")
-     public ResponseEntity<Proyectos> editarProyecto (@PathVariable Long id,
-                                        @RequestBody Proyectos p){
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/editar/proyecto/{id}")
+    public ResponseEntity<Proyectos> editarProyecto(@PathVariable Long id,
+            @RequestBody Proyectos p) {
         Proyectos nuevoproy = proyectoserv.buscarProyectos(id);
-        
+
         nuevoproy.setAnio(p.getAnio());
         nuevoproy.setDescripcion(p.getDescripcion());
         nuevoproy.setImg(p.getImg());
         nuevoproy.setTitulo(p.getTitulo());
-        
+
         proyectoserv.crearProyectos(nuevoproy);
         return ResponseEntity.ok(nuevoproy);
     }
-    
-     /*
-    @PutMapping ("/editar/proyecto/{id}")
-    public Proyectos editarProyecto (@PathVariable Long id,
-                                        @RequestParam ("titulo") String titulo,
-                                        @RequestParam ("anio") Integer anio,
-                                        @RequestParam ("descripcion") String descripcion,
-                                        @RequestParam ("img") String img){
-        Proyectos nuevoproy = proyectoserv.buscarProyectos(id);
-        
-        nuevoproy.setAnio(anio);
-        nuevoproy.setDescripcion(descripcion);
-        nuevoproy.setImg(img);
-        nuevoproy.setTitulo(titulo);
-        
-        proyectoserv.crearProyectos(nuevoproy);
-        return nuevoproy;
-    }
-*/
-    
-    @GetMapping ("/buscar/proyecto/{id}")
+
+    @GetMapping("/buscar/proyecto/{id}")
     @ResponseBody
-    public Proyectos buscarProyecto (@PathVariable Long id){
+    public Proyectos buscarProyecto(@PathVariable Long id) {
         return proyectoserv.buscarProyectos(id);
     }
-            
-            
-                                        
-    
-    
+
 }

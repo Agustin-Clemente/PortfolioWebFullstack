@@ -10,7 +10,7 @@ package com.MiPortfolio.MiPortfolio.model;
  * @author a_cle
  */
 public class Login {
-    
+
     private String username;
     private String password;
 
@@ -29,7 +29,5 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    
+
 }

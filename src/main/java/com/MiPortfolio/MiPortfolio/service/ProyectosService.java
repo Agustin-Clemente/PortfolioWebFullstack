@@ -16,41 +16,29 @@ import org.springframework.stereotype.Service;
  * @author a_cle
  */
 @Service
-public class ProyectosService implements IProyectosService{
-    
+public class ProyectosService implements IProyectosService {
+
     @Autowired
     public ProyectosRepository proyectorepo;
 
     @Override
     public List<Proyectos> verProyectos() {
-        return proyectorepo.findAll() ;
-                }
-    
-     @Override
+        return proyectorepo.findAll();
+    }
+
+    @Override
     public Proyectos crearProyectos(Proyectos p) {
         return proyectorepo.save(p);
-                }
+    }
 
-    /*
-    @Override
-    public void crearProyectos(Proyectos p) {
-        proyectorepo.save(p);
-    }
-*/
-    /*
-    @Override
-    public void borrarProyectos(Long id) {
-        proyectorepo.deleteById(id); 
-    }
-*/
     @Override
     public void borrarProyectos(Proyectos p) {
-        proyectorepo.delete(p); 
+        proyectorepo.delete(p);
     }
 
     @Override
     public Proyectos buscarProyectos(Long id) {
         return proyectorepo.findById(id).orElse(null);
-                }
-    
+    }
+
 }

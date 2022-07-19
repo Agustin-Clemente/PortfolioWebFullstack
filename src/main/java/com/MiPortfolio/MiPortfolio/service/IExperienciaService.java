@@ -13,19 +13,13 @@ import java.util.List;
  * @author a_cle
  */
 public interface IExperienciaService {
-    
-    public List<Experiencia> verExperiencia();
-    
-    public Experiencia crearExperiencia(Experiencia experience);
-    
-    public void borrarExperiencia (Experiencia e);
-    //public void borrarExperiencia (Long id);
 
-public Experiencia buscarExperiencia (Long id);    
-    
-    
-    
-    
-    
-    
+    public List<Experiencia> verExperiencia();
+
+    public Experiencia crearExperiencia(Experiencia experience);
+
+    public void borrarExperiencia(Experiencia e);
+
+    public Experiencia buscarExperiencia(Long id);
+
 }

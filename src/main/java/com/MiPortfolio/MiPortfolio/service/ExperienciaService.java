@@ -17,27 +17,21 @@ import org.springframework.stereotype.Service;
  * @author a_cle
  */
 @Service
-public class ExperienciaService implements IExperienciaService{
-    
+public class ExperienciaService implements IExperienciaService {
+
     @Autowired
     public ExperienciaRepository experienciarepo;
 
     @Override
     public List<Experiencia> verExperiencia() {
-       return experienciarepo.findAll();
-               }
+        return experienciarepo.findAll();
+    }
 
     @Override
     public Experiencia crearExperiencia(Experiencia experience) {
-       return  experienciarepo.save(experience); 
+        return experienciarepo.save(experience);
     }
 
-    /*
-    @Override
-    public void borrarExperiencia(Long id) {
-        experienciarepo.deleteById(id);  
-    }
-*/
     @Override
     public void borrarExperiencia(Experiencia e) {
         experienciarepo.delete(e);
@@ -45,8 +39,7 @@ public class ExperienciaService implements IExperienciaService{
 
     @Override
     public Experiencia buscarExperiencia(Long id) {
-        return experienciarepo.findById(id).orElseThrow(() -> new ResourceNotFoundException(("No existe la experiencia con id: " + id))); 
+        return experienciarepo.findById(id).orElseThrow(() -> new ResourceNotFoundException(("No existe la experiencia con id: " + id)));
     }
-    
-    
+
 }

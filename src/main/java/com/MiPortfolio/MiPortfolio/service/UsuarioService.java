@@ -19,20 +19,20 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class UsuarioService {
-    
+
     @Autowired
     private UsuarioRepository userRepo;
-    
-    public Optional<Usuario> getByUsername(String username){
+
+    public Optional<Usuario> getByUsername(String username) {
         return userRepo.findByUsername(username);
     }
-    
-    public boolean existsByUsername(String username){
+
+    public boolean existsByUsername(String username) {
         return userRepo.existsByUsername(username);
     }
-    
-    public void save(Usuario u){
+
+    public void save(Usuario u) {
         userRepo.save(u);
     }
-    
+
 }

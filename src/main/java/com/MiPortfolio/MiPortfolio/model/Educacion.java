@@ -17,26 +17,27 @@ import lombok.Setter;
  *
  * @author a_cle
  */
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class Educacion {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @NotNull
     private String institucion;
-    
+
     @NotNull
     private String titulo;
-    
+
     @NotNull
     private String desde;
-    
+
     @NotNull
     private String hasta;
-    
+
     private String img;
 
     public Educacion() {
@@ -48,8 +49,8 @@ public class Educacion {
         this.hasta = hasta;
         this.institucion = institucion;
         this.titulo = titulo;
-        this.img=img;
-        
+        this.img = img;
+
     }
-    
+
 }

@@ -5,21 +5,21 @@
  */
 package com.MiPortfolio.MiPortfolio.service;
 
-import com.MiPortfolio.MiPortfolio.model.Educacion;
+import com.MiPortfolio.MiPortfolio.model.Skill;
 import java.util.List;
 
 /**
  *
  * @author a_cle
  */
-public interface IEducacionService {
+public interface ISkillService {
 
-    public List<Educacion> verEducacion();
+    public List<Skill> traerSkills();
 
-    public Educacion crearEducacion(Educacion edu);
+    public Skill crearSkill(Skill s);
 
-    public void borrarEducacion(Educacion edu);
+    public void borrarSkill(Skill s);
 
-    public Educacion buscarEducacion(Long id);
+    public Skill buscarSkill(Long id);
 
 }

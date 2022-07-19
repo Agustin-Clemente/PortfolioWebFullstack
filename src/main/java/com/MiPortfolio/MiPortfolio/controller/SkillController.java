@@ -5,8 +5,8 @@
  */
 package com.MiPortfolio.MiPortfolio.controller;
 
-import com.MiPortfolio.MiPortfolio.model.Experiencia;
-import com.MiPortfolio.MiPortfolio.service.IExperienciaService;
+import com.MiPortfolio.MiPortfolio.model.Skill;
+import com.MiPortfolio.MiPortfolio.service.ISkillService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,29 +29,30 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class ExperienciaController {
+public class SkillController {
 
     @Autowired
-    private IExperienciaService expserv;
+    private ISkillService skillService;
 
-    @GetMapping("/ver/experiencia")
+    @GetMapping("/ver/skills")
     @ResponseBody
-    public List<Experiencia> verExperiencia() {
-        return expserv.verExperiencia();
+    public List<Skill> traerSkills() {
+        return skillService.traerSkills();
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/new/experiencia")
-    public Experiencia agregarExperiencia(@RequestBody Experiencia exp) {
-        return expserv.crearExperiencia(exp);
+    @PostMapping("/new/skill")
+    public Skill crearSkill(@RequestBody Skill s) {
+        return skillService.crearSkill(s);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/deleteexp/{id}")
-    public ResponseEntity<Map<String, Boolean>> borrarExperiencia(@PathVariable Long id) {
-        Experiencia exp = expserv.buscarExperiencia(id);
+    @DeleteMapping("/delete-skill/{id}")
+    public ResponseEntity<Map<String, Boolean>> borrarSkill(@PathVariable Long id) {
+        Skill s = skillService.buscarSkill(id);
 
-        expserv.borrarExperiencia(exp);
+        skillService.borrarSkill(s);
+
         Map<String, Boolean> respuesta = new HashMap<>();
         respuesta.put("eliminar", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
@@ -60,26 +60,23 @@ public class ExperienciaController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/editar/exp/{id}")
-    public ResponseEntity<Experiencia> editarExperiencia(@PathVariable Long id,
-            @RequestBody Experiencia e) {
-        Experiencia nuevaExp = expserv.buscarExperiencia(id);
+    @PutMapping("/editar/skill/{id}")
+    public ResponseEntity<Skill> editarSkill(@PathVariable Long id,
+            @RequestBody Skill s) {
+        Skill nuevaSkill = skillService.buscarSkill(id);
 
-        nuevaExp.setCargo(e.getCargo());
-        nuevaExp.setDesde(e.getDesde());
-        nuevaExp.setHasta(e.getHasta());
-        nuevaExp.setImg(e.getImg());
-        nuevaExp.setJornada(e.getJornada());
-        nuevaExp.setSector(e.getSector());
+        nuevaSkill.setPorcentaje(s.getPorcentaje());
+        nuevaSkill.setTitulo(s.getTitulo());
 
-        expserv.crearExperiencia(nuevaExp);
-        return ResponseEntity.ok(nuevaExp);
+        skillService.crearSkill(nuevaSkill);
+        return ResponseEntity.ok(nuevaSkill);
+
     }
 
-    @GetMapping("/buscar/exp/{id}")
+    @GetMapping("/buscar/skill/{id}")
     @ResponseBody
-    public Experiencia buscarExperiencia(@PathVariable Long id) {
-        return expserv.buscarExperiencia(id);
+    public Skill buscarSkill(@PathVariable Long id) {
+        return skillService.buscarSkill(id);
     }
 
 }

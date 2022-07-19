@@ -16,15 +16,14 @@ import org.springframework.stereotype.Service;
  * @author a_cle
  */
 @Service
-public class PersonaService implements IPersonaService{
+public class PersonaService implements IPersonaService {
 
     @Autowired
     public PersonaRepository persorepo;
-    
-    
+
     @Override
     public List<Persona> verPersonas() {
-       return persorepo.findAll();
+        return persorepo.findAll();
     }
 
     @Override
@@ -34,12 +33,12 @@ public class PersonaService implements IPersonaService{
 
     @Override
     public void borrarPersona(Long id) {
-       persorepo.deleteById(id);
+        persorepo.deleteById(id);
     }
 
     @Override
     public Persona buscarPersona(Long id) {
         return persorepo.findById(id).orElse(null);
     }
-    
+
 }

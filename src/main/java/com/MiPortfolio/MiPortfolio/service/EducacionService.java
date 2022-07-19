@@ -16,30 +16,29 @@ import org.springframework.stereotype.Service;
  * @author a_cle
  */
 @Service
-public class EducacionService implements IEducacionService{
-    
+public class EducacionService implements IEducacionService {
+
     @Autowired
     public EducacionRepository edurepo;
 
     @Override
     public List<Educacion> verEducacion() {
         return edurepo.findAll();
-        }
+    }
 
     @Override
     public Educacion crearEducacion(Educacion edu) {
         return edurepo.save(edu);
-                }
+    }
 
     @Override
     public void borrarEducacion(Educacion edu) {
-       // edurepo.deleteById(id);
-       edurepo.delete(edu);
+        edurepo.delete(edu);
     }
 
     @Override
     public Educacion buscarEducacion(Long id) {
         return edurepo.findById(id).orElse(null);
     }
-    
+
 }

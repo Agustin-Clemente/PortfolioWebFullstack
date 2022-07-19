@@ -13,9 +13,9 @@ import org.springframework.security.core.GrantedAuthority;
  * @author a_cle
  */
 public class JwtAuthResponse {
-    
+
     private String token;
-    private String tipo="Bearer";
+    private String tipo = "Bearer";
     private String username;
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -24,13 +24,6 @@ public class JwtAuthResponse {
         this.username = username;
         this.authorities = authorities;
     }
-    
-    
-/*
-    public JwtAuthResponse(String token) {
-        this.token = token;
-    }
-*/
 
     public String getToken() {
         return token;
@@ -63,11 +56,5 @@ public class JwtAuthResponse {
     public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
         this.authorities = authorities;
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

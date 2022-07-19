@@ -20,40 +20,25 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Persona {
+public class Skill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
-    private String nombre;
+    private int porcentaje;
 
     @NotNull
-    private String apellido;
+    private String titulo;
 
-    @NotNull
-    private String acercade;
-
-    @NotNull
-    private String ubicacion;
-
-    @NotNull
-    private String profesion;
-
-    private String img;
-
-    public Persona() {
+    public Skill() {
     }
 
-    public Persona(Long id, String nombre, String apellido, String img, String ubicacion, String profesion, String acercade) {
+    public Skill(Long id, int porcentaje, String titulo) {
         this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.img = img;
-        this.acercade = acercade;
-        this.profesion = profesion;
-        this.ubicacion = ubicacion;
+        this.porcentaje = porcentaje;
+        this.titulo = titulo;
     }
 
 }
