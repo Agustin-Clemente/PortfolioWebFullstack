@@ -28,8 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author a_cle
  */
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://miportfolio-b96db.web.app")
 public class ExperienciaController {
 
     @Autowired
