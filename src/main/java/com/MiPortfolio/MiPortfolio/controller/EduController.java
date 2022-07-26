@@ -59,6 +59,7 @@ public class EduController {
         return ResponseEntity.ok(respuesta);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("editar/edu/{id}")
     public ResponseEntity<Educacion> editarEducacion(@PathVariable Long id,
             @RequestBody Educacion edu) {
